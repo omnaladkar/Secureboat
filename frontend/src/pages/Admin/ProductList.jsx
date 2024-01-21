@@ -29,7 +29,7 @@ const ProductList = () => {
 
     try {
       const productData = new FormData();
-      // productData.append("image", image);
+      productData.append("image", image);
       productData.append("name", name);
       productData.append("description", description);
       productData.append("price", price);

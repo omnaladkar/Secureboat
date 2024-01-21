@@ -35,7 +35,7 @@ export const productApiSlice = apiSlice.injectEndpoints({
         url: `${PRODUCT_URL}`,
         method: "POST",
         body: productData,
-        credentials:"same-origin"
+        
       }),
       invalidatesTags: ["Product"],
     }),

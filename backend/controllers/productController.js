@@ -7,11 +7,19 @@ const addProduct = asyncHandler(async (req, res) => {
   // res.send(name);
   try {
    
-    const { name, description, price, category, quantity, brand } =  req.body;
+    const { name, description, price, category, quantity, brand } = req.body;
     
-    console.log(name);
+
   
-    const product = new Product({ ...req.body });
+    const product = new Product({
+      name,
+      description,
+      price,
+      category,
+      quantity,
+      brand,
+    });
+
 
    console.log(product);
     await product.save();
