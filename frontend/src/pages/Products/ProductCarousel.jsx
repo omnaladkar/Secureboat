@@ -43,7 +43,7 @@ const ProductCarousel = () => {
               _id,
               name,
               price,
-              description,
+              
               brand,
               createdAt,
               numReviews,
@@ -62,9 +62,9 @@ const ProductCarousel = () => {
                   <div className="one">
                     <h2>{name}</h2>
                     <p> $ {price}</p> <br /> <br />
-                    <p className="w-[25rem]">
+                    {/* <p className="w-[25rem]">
                       {description.substring(0, 170)} ...
-                    </p>
+                    </p> */}
                   </div>
 
                   <div className="flex justify-between w-[20rem]">

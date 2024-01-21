@@ -3,23 +3,28 @@ import User from "../models/userModel.js";
 import asyncHandler from "./asyncHandler.js";
 
 const authenticate = asyncHandler(async (req, res, next) => {
-  let token;
+  try {
+    let token;
 
-  // Read JWT from the 'jwt' cookie
-  token = req.cookies.jwt;
+    // Read JWT from the 'jwt' cookie
+    token = req.cookies.jwt;
+    console.log('Token:', token);
 
-  if (token) {
-    try {
+    if (token) {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log('Decoded:', decoded);
+
       req.user = await User.findById(decoded.userId).select("-password");
+      console.log('User:', req.user);
+
       next();
-    } catch (error) {
+    } else {
       res.status(401);
-      throw new Error("Not authorized, token failed.");
+      throw new Error("Not authorized, no token.");
     }
-  } else {
-    res.status(401);
-    throw new Error("Not authorized, no token.");
+  } catch (error) {
+    console.error('Authentication Error:', error.message);
+    res.status(401).send('Not authorized, token failed.');
   }
 });
 
